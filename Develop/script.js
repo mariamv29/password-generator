@@ -1,9 +1,11 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
+generateBtn.addEventListener("click", generatePassword);
+
 ///Define characters that the password can contain
 
-var upperCase = [
+var upperCaseCharacters = [
   "A",
   "B",
   "C",
@@ -31,7 +33,7 @@ var upperCase = [
   "Y",
   "Z",
 ];
-var lowerCasedCharacters = [
+var lowerCaseCharacters = [
   "a",
   "b",
   "c",
@@ -128,40 +130,39 @@ function generatePassword() {
     upperCase: confirmupperCaseCharacters,
     lowerCase: confirmlowerCaseCharacers,
   };
-  // console.log(
-  //   "this is the numbers parameter inside our object",
-  //   userSelectionOptions.numbers
-  // );
+
   return userSelectionOptions;
 }
-generateBtn.addEventListener("click", generatePassword);
 
-// Write password to the #password input
+//if in the user selection options, symbols is true then push symbols array, if boolean is true then add global symbols array into a new array
+
 function writePassword() {
   var userSelectionOptions = generatePassword();
   var combinedArray = [];
   if (userSelectionOptions.symbols) {
-    combinedArray = combinedArray.concat(symbols);
+    combinedArray = combinedArray.concat(userSelectionOptions.symbols);
   }
-  //   if (userSelectionOptions.numbers) {
-  //     combinedArray = combinedArray.concat(numbers);
-  //   }
-  //   if (userSelectionOptions.upperCase) {
-  //     combinedArray = combinedArray.concat(upperCase);
-  //   }
-  //   if (userSelectionOptions.lowerCase) {
-  //     combinedArray = combinedArray.contact(lowerCase);
-  //   }
-  //   if (userSelectionOptions.length) {
-  //     combinedArray = combinedArray.concat(length);
-  //   }
-  //   console.log(userSelectionOptions);
-  //if in the user selection options, symbols is true then push symbols array, if boolean is true then add global symbols array into a new array
-
+  if (userSelectionOptions.numbers) {
+    combinedArray = combinedArray.concat(userSelectionOptions.numbers);
+  }
+  if (userSelectionOptions.upperCase) {
+    combinedArray = combinedArray.concat(userSelectionOptions.upperCase);
+  }
+  if (userSelectionOptions.lowerCase) {
+    combinedArray = combinedArray.concat(userSelectionOptions.lowerCase);
+  }
+  if (userSelectionOptions.length) {
+    combinedArray = combinedArray.concat(userSelectionOptions.length);
+  }
+  writePassword();
   // loop over based on number on length
 
-  // save to its own var then print to DOM element
+  for (var i = 0; i < combinedArray.length; i++) {
+    if (!userSelectionOptions[i].combinedArray) {
+      window.alert("Your password has been created: combinedArray.concat[i]");
+    }
+  }
 }
-passwordText.value = password;
+// save to its own var then print to DOM element
 
-writePassword();
+passwordText.value = password;
