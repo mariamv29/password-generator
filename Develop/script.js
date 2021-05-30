@@ -90,7 +90,7 @@ function generatePassword() {
     "How many characters would you like our password to contain?"
   );
   // validate prompt answer
-  while (confirmLength <= 8 || confirmLength >= 128) {
+  while (confirmLength < 8 || confirmLength > 128) {
     alert(
       "Password must contain between 8 to 128 characters! Please try again!"
     );
